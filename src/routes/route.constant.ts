@@ -8,6 +8,4 @@ export const REGISTER = "/register";
 
 //auth
 export const DEFAULT_ADMIN = "/admin";
-export const PROFILE = authPrefix + "/profile";
-export const DASHBOARD = authPrefix + "/dashboard";
-export const CHANGE_PASSWORD = authPrefix + "/change-password";
+export const UPLOAD_BRDC = authPrefix + "/upload-brdc";
