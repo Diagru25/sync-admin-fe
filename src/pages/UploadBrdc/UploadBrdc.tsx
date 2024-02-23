@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 import "@mantine/dropzone/styles.css";
 import { IconUpload, IconFile, IconX } from "@tabler/icons-react";
 import { Dropzone, FileRejection, FileWithPath } from "@mantine/dropzone";
-import { Button, Center, Group, Text, rem } from "@mantine/core";
+import { Button, Center, Group, Text, Title, rem } from "@mantine/core";
 import dayjs from "dayjs";
 import { REGEX_EXT } from "constants/common/common";
 
@@ -29,7 +29,9 @@ const UploadBrdc = () => {
 
   return (
     <Fragment>
+      <Title order={3}>Upload file brdc</Title>
       <Dropzone
+        mt="md"
         onDrop={(files) => {
           setFile(files[0]);
           setFileRejected(null);

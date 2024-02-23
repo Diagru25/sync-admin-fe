@@ -66,19 +66,19 @@ function* checkSessionSaga(): unknown {
     if (response.status === 200) {
       yield put({
         type: updateState.type,
-        payload: { isLoggedIn: true },
+        payload: { isLoggedIn: true, user: response.data },
       });
     } else {
       yield put({
         type: updateState.type,
-        payload: { isLoggedIn: false },
+        payload: { isLoggedIn: false, user: null },
       });
       localStorage.removeItem(ACCESS_TOKEN);
     }
   } catch (error) {
     yield put({
       type: updateState.type,
-      payload: { isLoggedIn: false },
+      payload: { isLoggedIn: false, user: null },
     });
     localStorage.removeItem(ACCESS_TOKEN);
   }

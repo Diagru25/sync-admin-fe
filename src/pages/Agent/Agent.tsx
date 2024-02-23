@@ -1,4 +1,4 @@
-import { Button, Group, Table, Text } from "@mantine/core";
+import { Button, Group, Table, Text, Title } from "@mantine/core";
 import { IconRefresh } from "@tabler/icons-react";
 import CopyClipboardIcon from "components/CopyClipboardIcon";
 import { DATE_TIME_FORMAT } from "constants/common/common";
@@ -24,7 +24,8 @@ const Agent = () => {
 
   return (
     <Fragment>
-      <Table striped highlightOnHover withTableBorder>
+      <Title order={3}>Danh sách trạm thu</Title>
+      <Table striped highlightOnHover withTableBorder mt="md">
         <Table.Thead>
           <Table.Tr>
             <Table.Th>STT</Table.Th>
