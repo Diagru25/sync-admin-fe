@@ -24,13 +24,15 @@ const onResponse = (response: AxiosResponse): AxiosResponse => {
   return response;
 };
 
-const onResponseError = (error: AxiosError): Promise<AxiosError> | any => {
+const onResponseError = (
+  error: AxiosError
+): Promise<AxiosError> | AxiosError => {
   if (error.response?.status === 401) {
     const win: Window = window;
     win.location =
       window.location.protocol + "//" + window.location.host + LOGIN;
   }
-  return Promise.reject(error.response);
+  return error;
 };
 
 export function setupInterceptorsTo(

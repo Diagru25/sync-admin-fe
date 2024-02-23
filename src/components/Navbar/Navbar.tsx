@@ -6,7 +6,13 @@ import {
 } from "@tabler/icons-react";
 import NavItem from "components/Navbar/NavItem";
 
-import { UPLOAD_BRDC } from "routes/route.constant";
+import {
+  AGENT_PAGE,
+  BEIDOU_PAGE,
+  GLONASS_PAGE,
+  GPS_PAGE,
+  UPLOAD_BRDC,
+} from "routes/route.constant";
 
 type Props = {
   triggerBurger: () => void;
@@ -25,12 +31,28 @@ const NavbarCustom: FC<Props> = ({ triggerBurger }) => {
       label: "File brdc",
       link: "",
       color: "",
-      children: [],
+      children: [
+        {
+          icon: "",
+          label: "GPS Brdc",
+          link: GPS_PAGE,
+        },
+        {
+          icon: "",
+          label: "BEIDOU Brdc",
+          link: BEIDOU_PAGE,
+        },
+        {
+          icon: "",
+          label: "GLONASS Brdc",
+          link: GLONASS_PAGE,
+        },
+      ],
     },
     {
       icon: <IconDeviceDesktopAnalytics />,
       label: "Danh sách trạm thu",
-      link: "",
+      link: AGENT_PAGE,
       color: "",
       children: [],
     },

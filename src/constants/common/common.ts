@@ -6,3 +6,5 @@ export const PAGE_SIZE = 10;
 export const DATE_FORMAT = "DD/MM/YYYY";
 export const TIME_FORMAT = "HH:mm";
 export const DATE_TIME_FORMAT = "DD/MM/YYYY HH:mm:ss";
+
+export const REGEX_EXT = /(\.\d{2}n)|(.nav)/g;

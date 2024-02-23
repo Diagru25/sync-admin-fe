@@ -11,6 +11,8 @@ function* loginSaga(action: PayloadAction<LoginData>): unknown {
   try {
     const res = yield authApi.login(action.payload);
 
+    console.log(res);
+
     if (res.status === 200) {
       yield put({
         type: updateState.type,
@@ -20,20 +22,20 @@ function* loginSaga(action: PayloadAction<LoginData>): unknown {
       localStorage.setItem(ACCESS_TOKEN, res.data.token);
       notifications.show({
         title: "Đăng nhập thành công",
-        message: "Chào mừng xxx",
+        message: `Chào mừng ${res.data.user.Username}`,
         color: "green",
+      });
+    } else {
+      notifications.show({
+        title: "Đăng nhập không thành công",
+        message: res.response.data,
+        color: "red",
       });
     }
   } catch (error: any) {
     yield put({
       type: updateState.type,
       payload: { isLoggedIn: false },
-    });
-
-    notifications.show({
-      title: "Đăng nhập không thành công",
-      message: error?.data?.message ? error?.data?.message : error.data,
-      color: "red",
     });
 
     localStorage.removeItem(ACCESS_TOKEN);
