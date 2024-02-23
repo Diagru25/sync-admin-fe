@@ -1,15 +1,17 @@
-import React, { FC, Suspense } from "react";
+import React, { FC, Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import publicRoutes from "src/routes/route.public";
 import authRoutes from "routes/route.auth";
 
 import ErrorBoundary from "components/ErrorBoundary";
-import MainLayout from "components/Layout/MainLayout";
+// import MainLayout from "components/Layout/MainLayout";
 import ClientLayout from "components/Layout/ClientLayout";
 import NotFoundPage from "components/NotFoundPage";
 import PrivateRoutes from "components/PrivateRoutes";
 import { DEFAULT, UPLOAD_BRDC } from "routes/route.constant";
+
+const MainLayout = lazy(() => import("components/Layout/MainLayout"));
 
 const App: FC = () => {
   return (

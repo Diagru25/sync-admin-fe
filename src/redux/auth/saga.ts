@@ -11,8 +11,6 @@ function* loginSaga(action: PayloadAction<LoginData>): unknown {
   try {
     const res = yield authApi.login(action.payload);
 
-    console.log(res);
-
     if (res.status === 200) {
       yield put({
         type: updateState.type,
