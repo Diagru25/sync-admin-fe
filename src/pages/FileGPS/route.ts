@@ -1,5 +1,6 @@
+import { lazy } from "react";
 import { GPS_PAGE } from "routes/route.constant";
-import FileGPS from "pages/FileGPS";
+const FileGPS = lazy(() => import("pages/FileGPS"));
 
 export default {
   path: GPS_PAGE,

@@ -1,5 +1,7 @@
 import { AGENT_PAGE } from "routes/route.constant";
-import Agent from "pages/Agent";
+import { lazy } from "react";
+
+const Agent = lazy(() => import("pages/Agent"));
 
 export default {
   path: AGENT_PAGE,

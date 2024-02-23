@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import publicRoutes from "src/routes/route.public";
@@ -8,7 +8,7 @@ import ErrorBoundary from "components/ErrorBoundary";
 import MainLayout from "components/Layout/MainLayout";
 import ClientLayout from "components/Layout/ClientLayout";
 import NotFoundPage from "components/NotFoundPage";
-// import PrivateRoutes from "components/PrivateRoutes/PrivateRoutes";
+import PrivateRoutes from "components/PrivateRoutes";
 import { DEFAULT, UPLOAD_BRDC } from "routes/route.constant";
 
 const App: FC = () => {
@@ -21,15 +21,25 @@ const App: FC = () => {
             return <Route key={path} path={path} element={<Element />} />;
           })}
         </Route>
-        {/* <Route element={<PrivateRoutes />}> */}
-        <Route element={<MainLayout />}>
-          <Route path={DEFAULT} element={<Navigate to={UPLOAD_BRDC} />} />
-          {authRoutes.map(({ path, element }) => {
-            const Element: FC = element;
-            return <Route key={path} path={path} element={<Element />} />;
-          })}
+        <Route element={<PrivateRoutes />}>
+          <Route element={<MainLayout />}>
+            <Route path={DEFAULT} element={<Navigate to={UPLOAD_BRDC} />} />
+            {authRoutes.map(({ path, element }) => {
+              // const Element: FC = element;
+              return (
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    <Suspense fallback={<div>Loading...</div>}>
+                      {React.createElement(element)}
+                    </Suspense>
+                  }
+                />
+              );
+            })}
+          </Route>
         </Route>
-        {/* </Route> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </ErrorBoundary>

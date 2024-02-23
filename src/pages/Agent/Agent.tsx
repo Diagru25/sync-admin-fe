@@ -22,8 +22,6 @@ const Agent = () => {
       </div>
     );
 
-  console.log(data);
-
   return (
     <Fragment>
       <Table striped highlightOnHover withTableBorder>

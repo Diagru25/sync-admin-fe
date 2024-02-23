@@ -68,7 +68,6 @@ function* checkSessionSaga(): unknown {
         type: updateState.type,
         payload: { isLoggedIn: true },
       });
-      localStorage.setItem(ACCESS_TOKEN, "true");
     } else {
       yield put({
         type: updateState.type,

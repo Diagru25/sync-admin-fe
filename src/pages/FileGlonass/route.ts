@@ -1,5 +1,6 @@
+import { lazy } from "react";
 import { GLONASS_PAGE } from "routes/route.constant";
-import FileGlonass from "pages/FileGlonass";
+const FileGlonass = lazy(() => import("pages/FileGlonass"));
 
 export default {
   path: GLONASS_PAGE,

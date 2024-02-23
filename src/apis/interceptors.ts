@@ -5,12 +5,13 @@ import {
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios";
+import { ACCESS_TOKEN } from "constants/common/common";
 import { LOGIN } from "routes/route.constant";
 
 const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig | any => {
   //console.info(`[request] [${JSON.stringify(config)}]`);
-  //   const token = localStorage.getItem(ACCESS_TOKEN);
-  //   if (config.headers) config.headers = { x_access_token: `${token}` };
+  const token = localStorage.getItem(ACCESS_TOKEN);
+  if (config.headers) config.headers = { Authorization: `Bearer ${token}` };
   return config;
 };
 
