@@ -9,6 +9,7 @@ import { Fragment } from "react";
 import EditableInputCell from "./component/EditableInputCell";
 import { agentApi } from "apis/agentApi";
 import { useNotification } from "hooks/ui";
+import AgentMobile from "pages/Agent/mobile/AgentMobile";
 
 const Agent = () => {
   const { notification } = useNotification();
@@ -28,8 +29,6 @@ const Agent = () => {
     }
   };
 
-  console.log("parent");
-
   if (!data && isLoading) return <div>Loading...</div>;
 
   if (error)
@@ -45,7 +44,7 @@ const Agent = () => {
   return (
     <Fragment>
       <Title order={3}>Danh sách trạm thu</Title>
-      <Table striped highlightOnHover withTableBorder mt="md">
+      <Table striped highlightOnHover withTableBorder mt="md" visibleFrom="sm">
         <Table.Thead>
           <Table.Tr>
             <Table.Th>STT</Table.Th>
@@ -85,6 +84,7 @@ const Agent = () => {
           ))}
         </Table.Tbody>
       </Table>
+      <AgentMobile data={data?.data || []} />
     </Fragment>
   );
 };
