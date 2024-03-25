@@ -17,7 +17,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "configs/configureStore";
 import { Navigate } from "react-router-dom";
-import { DEFAULT } from "routes/route.constant";
+import { AGENT_PAGE } from "routes/route.constant";
 
 type FormLoginData = {
   accessValue: string;
@@ -59,7 +59,7 @@ const Login = () => {
     },
   });
 
-  if (isLoggedIn) return <Navigate to={DEFAULT} />;
+  if (isLoggedIn) return <Navigate to={AGENT_PAGE} />;
 
   return (
     <Fragment>
