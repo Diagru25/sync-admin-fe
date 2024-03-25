@@ -9,7 +9,7 @@ import ErrorBoundary from "components/ErrorBoundary";
 import ClientLayout from "components/Layout/ClientLayout";
 import NotFoundPage from "components/NotFoundPage";
 import PrivateRoutes from "components/PrivateRoutes";
-import { DEFAULT, UPLOAD_BRDC } from "routes/route.constant";
+import { AGENT_PAGE, DEFAULT } from "routes/route.constant";
 
 const MainLayout = lazy(() => import("components/Layout/MainLayout"));
 
@@ -25,7 +25,7 @@ const App: FC = () => {
         </Route>
         <Route element={<PrivateRoutes />}>
           <Route element={<MainLayout />}>
-            <Route path={DEFAULT} element={<Navigate to={UPLOAD_BRDC} />} />
+            <Route path={DEFAULT} element={<Navigate to={AGENT_PAGE} />} />
             {authRoutes.map(({ path, element }) => {
               // const Element: FC = element;
               return (
