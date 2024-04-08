@@ -6,10 +6,13 @@ import { Dropzone, FileRejection, FileWithPath } from "@mantine/dropzone";
 import { Button, Center, Group, Text, Title, rem } from "@mantine/core";
 import dayjs from "dayjs";
 import { REGEX_EXT } from "constants/common/common";
+import { genFileNameBrdc } from "utils/string";
+import { uploadApi } from "apis/uploadApi";
 
 const UploadBrdc = () => {
   const [file, setFile] = useState<FileWithPath | null>(null);
   const [fileRejected, setFileRejected] = useState<FileRejection | null>(null);
+  const [uploading, setUploading] = useState<boolean>(false);
 
   const handleValidFile = (file: File) => {
     const tmp_arr = file.name.split(".");
@@ -21,21 +24,53 @@ const UploadBrdc = () => {
         message: `Định dạng này không được hỗ trợ`,
       };
     } else {
-      console.log("gggg");
+      return null;
     }
+  };
 
-    return null;
+  const handleSelectedFile = (files: FileWithPath[]) => {
+    setFile(files[0]);
+    setFileRejected(null);
+  };
+
+  const handleUploadBrdc = () => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsText(file, "UTF-8");
+
+      reader.onload = function (evt) {
+        if (evt.target) {
+          const fileContent = evt.target.result || "";
+
+          let filename = genFileNameBrdc(fileContent as string);
+          filename = filename ? filename : file.name;
+          setUploading(true);
+          uploadApi
+            .uploadBrdc(file, filename)
+            .then((res) => {
+              console.log(res);
+              setUploading(false);
+            })
+            .catch((err) => {
+              console.log(err);
+              setUploading(false);
+            });
+        }
+      };
+    }
   };
 
   return (
     <Fragment>
       <Title order={3}>Upload file brdc</Title>
+      <input
+        type="file"
+        multiple={false}
+        onChange={(e) => console.log(e.target.files)}
+      ></input>
       <Dropzone
         mt="md"
-        onDrop={(files) => {
-          setFile(files[0]);
-          setFileRejected(null);
-        }}
+        onDrop={handleSelectedFile}
         onReject={(files) => {
           setFileRejected(files[0]);
           setFile(null);
@@ -112,7 +147,13 @@ const UploadBrdc = () => {
       </Dropzone>
       {file && !fileRejected && (
         <Center mt="md">
-          <Button leftSection={<IconUpload />}>Upload</Button>
+          <Button
+            loading={uploading}
+            leftSection={<IconUpload />}
+            onClick={handleUploadBrdc}
+          >
+            Upload
+          </Button>
         </Center>
       )}
     </Fragment>

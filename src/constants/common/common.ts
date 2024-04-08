@@ -8,3 +8,5 @@ export const TIME_FORMAT = "HH:mm";
 export const DATE_TIME_FORMAT = "DD/MM/YYYY HH:mm:ss";
 
 export const REGEX_EXT = /(\.\d{2}n)|(.nav)/g;
+
+export const REGEX_TIME_BRDC = /\d{1,2}-\w{3,4}-\d{2}/g;
