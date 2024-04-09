@@ -5,7 +5,7 @@ export const uploadApi = {
     const formData = new FormData();
     formData.append("file", file, filename);
     return request({
-      url: "/auth/login",
+      url: "/api/upload",
       method: "POST",
       headers: {
         "Content-Type": "multipart/form-data",

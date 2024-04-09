@@ -1,4 +1,4 @@
-import { REGEX_TIME_BRDC } from "constants/common/common";
+import { REGEX_TIME_BRDC, REGEX_TIME_BRDC_V3 } from "constants/common/common";
 import dayjs from "configs/dayjs";
 
 export const checkTypeRinex = (content: string) => {
@@ -31,12 +31,19 @@ export const getTimeOnBrdcFile = (content: string, version: string) => {
     if (version === "2") {
       const matchTime = content.match(REGEX_TIME_BRDC);
       const time = matchTime ? matchTime[0] : "";
-      const dateObj = dayjs(time, "DD-MMM-YY");
-      dayOfYear = dateObj.dayOfYear().toString();
-      year = dateObj.format("YY");
+      if (time) {
+        const dateObj = dayjs(time, "DD-MMM-YY");
+        dayOfYear = dateObj.dayOfYear().toString();
+        year = dateObj.format("YY");
+      }
     } else if (version === "3") {
-      dayOfYear = "";
-      year = "";
+      const matchTime = content.match(REGEX_TIME_BRDC_V3);
+      const time = matchTime ? matchTime[0] : "";
+      if (time) {
+        const dateObj = dayjs(time, "YYYYMMDD");
+        dayOfYear = dateObj.dayOfYear().toString();
+        year = dateObj.format("YY");
+      }
     }
     return {
       dayOfYear,

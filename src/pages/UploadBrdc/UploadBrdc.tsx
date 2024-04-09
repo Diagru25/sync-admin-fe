@@ -8,8 +8,10 @@ import dayjs from "dayjs";
 import { REGEX_EXT } from "constants/common/common";
 import { genFileNameBrdc } from "utils/string";
 import { uploadApi } from "apis/uploadApi";
+import { useNotification } from "hooks/ui";
 
 const UploadBrdc = () => {
+  const { notification } = useNotification();
   const [file, setFile] = useState<FileWithPath | null>(null);
   const [fileRejected, setFileRejected] = useState<FileRejection | null>(null);
   const [uploading, setUploading] = useState<boolean>(false);
@@ -48,12 +50,15 @@ const UploadBrdc = () => {
           uploadApi
             .uploadBrdc(file, filename)
             .then((res) => {
-              console.log(res);
               setUploading(false);
+              if (res?.data?.success === true)
+                notification.success("Thông báo", "Upload file thành công!");
+              else
+                notification.error("Upload file thất bại", res?.data?.message);
             })
             .catch((err) => {
-              console.log(err);
               setUploading(false);
+              notification.error("Upload file thất bại", err.toString());
             });
         }
       };
@@ -63,11 +68,6 @@ const UploadBrdc = () => {
   return (
     <Fragment>
       <Title order={3}>Upload file brdc</Title>
-      <input
-        type="file"
-        multiple={false}
-        onChange={(e) => console.log(e.target.files)}
-      ></input>
       <Dropzone
         mt="md"
         onDrop={handleSelectedFile}
