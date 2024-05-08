@@ -8,6 +8,7 @@ import NavItem from "components/Navbar/NavItem";
 
 import {
   AGENT_PAGE,
+  ALL_SATELLITE_PAGE,
   BEIDOU_PAGE,
   GLONASS_PAGE,
   GPS_PAGE,
@@ -46,6 +47,11 @@ const NavbarCustom: FC<Props> = ({ triggerBurger }) => {
           icon: "",
           label: "GLONASS Brdc",
           link: GLONASS_PAGE,
+        },
+        {
+          icon: "",
+          label: "Brdc Đa hệ",
+          link: ALL_SATELLITE_PAGE,
         },
       ],
     },

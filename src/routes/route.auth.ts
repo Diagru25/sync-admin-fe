@@ -3,6 +3,7 @@ import AgentRoute from "pages/Agent/route";
 import FileGPSRoute from "pages/FileGPS/route";
 import FileBeidouRoute from "pages/FileBeidou/route";
 import FileGlonassRoute from "pages/FileGlonass/route";
+import FileAllRoute from "pages/FileAll/route";
 
 export default [
   UploadBrdcRoute,
@@ -10,4 +11,5 @@ export default [
   FileGPSRoute,
   FileBeidouRoute,
   FileGlonassRoute,
+  FileAllRoute,
 ];
