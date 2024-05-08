@@ -30,7 +30,7 @@ const FileList: FC<Props> = ({ type }) => {
   return (
     <Fragment>
       <SimpleGrid cols={{ base: 1, sm: 2, md: 5, lg: 4, xl: 5 }} mt="md">
-        {data.data.reverse().map((item: BrdcType) => (
+        {data.data.map((item: BrdcType) => (
           <Button
             size="xs"
             fullWidth
