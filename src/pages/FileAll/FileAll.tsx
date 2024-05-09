@@ -6,7 +6,7 @@ const FileAll = () => {
   return (
     <Fragment>
       <Title order={3}>Danh sách file brdc đa hệ</Title>
-      <FileList type="ALL" />
+      <FileList type="MULTIPLE" />
     </Fragment>
   );
 };
