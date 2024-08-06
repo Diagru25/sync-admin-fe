@@ -1,4 +1,10 @@
 export type UserType = {
-  Id: number;
+  UserId: number;
   Username: string;
+  exp: number;
+  iat: number;
+};
+
+export type ChangePassType = {
+  newPassword: string;
 };

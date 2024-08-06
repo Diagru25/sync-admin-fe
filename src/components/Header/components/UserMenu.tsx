@@ -1,14 +1,17 @@
 import { Avatar, Group, Menu, Stack, Text } from "@mantine/core";
 import { useClickOutside } from "@mantine/hooks";
-import { IconLogout } from "@tabler/icons-react";
+import { IconLogout, IconKey } from "@tabler/icons-react";
 import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "redux/auth/slice";
 import classes from "components/Header/components/UserMenu.module.css";
 import { RootState } from "configs/configureStore";
+import { useNavigate } from "react-router-dom";
+import { CHANGE_PASSWORD } from "routes/route.constant";
 
 export const UserMenu: FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state: RootState) => state.authSlice);
   const [opened, setOpened] = useState(false);
   const ref = useClickOutside(() => setOpened(false));
@@ -32,7 +35,12 @@ export const UserMenu: FC = () => {
 
       <Menu.Dropdown>
         <Menu.Label>Thông tin</Menu.Label>
-
+        <Menu.Item
+          leftSection={<IconKey size={14} />}
+          onClick={() => navigate(CHANGE_PASSWORD)}
+        >
+          Đổi mật khẩu
+        </Menu.Item>
         <Menu.Divider />
 
         <Menu.Item

@@ -4,6 +4,7 @@ import FileGPSRoute from "pages/FileGPS/route";
 import FileBeidouRoute from "pages/FileBeidou/route";
 import FileGlonassRoute from "pages/FileGlonass/route";
 import FileAllRoute from "pages/FileAll/route";
+import ChangePasswordRoute from "pages/ChangePassword/route";
 
 export default [
   UploadBrdcRoute,
@@ -12,4 +13,5 @@ export default [
   FileBeidouRoute,
   FileGlonassRoute,
   FileAllRoute,
+  ChangePasswordRoute,
 ];

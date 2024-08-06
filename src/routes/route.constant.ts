@@ -14,3 +14,4 @@ export const GPS_PAGE = authPrefix + "/gps_brdc";
 export const BEIDOU_PAGE = authPrefix + "/beidou_brdc";
 export const GLONASS_PAGE = authPrefix + "/glonass-brdc";
 export const ALL_SATELLITE_PAGE = authPrefix + "/all-brdc";
+export const CHANGE_PASSWORD = authPrefix + "/change-password";
