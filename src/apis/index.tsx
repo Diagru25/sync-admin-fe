@@ -2,3 +2,4 @@
 export * from "apis/authApi";
 export * from "apis/agentApi";
 export * from "apis/uploadApi";
+export * from "apis/fileApi";

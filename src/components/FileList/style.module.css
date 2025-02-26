@@ -1,0 +1,8 @@
+.file-item-box {
+  border-radius: 0.25rem;
+}
+
+.file-item-box:hover {
+  background-color: var(--mantine-color-blue-1);
+  cursor: pointer;
+}
